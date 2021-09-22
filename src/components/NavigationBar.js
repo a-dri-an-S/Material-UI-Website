@@ -1,4 +1,4 @@
-import { Container, Toolbar, Typography } from "@material-ui/core";
+import { Box, Container, Link, Toolbar, Typography } from "@material-ui/core";
 
 const NavigationBar = () => {
     return (  
@@ -7,6 +7,17 @@ const NavigationBar = () => {
                 <Typography>
                     INGSOC
                 </Typography>
+                <Box>
+                    {['Home', 'Courses', 'Sign Up'].map((menuOption) => (
+                        <Link
+                            component='button'
+                            variant='body1'
+                            
+                        >
+                            {menuOption}
+                        </Link>
+                    ))}
+                </Box>
             </Toolbar>
         </Container>
 
