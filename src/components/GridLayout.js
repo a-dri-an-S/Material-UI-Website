@@ -1,29 +1,10 @@
-import { makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import GridItem from "./GirdItem";
 import MainGridItem from "./MainGridItem";
 
 
 
-const useStyles = makeStyles(theme =>({
-    mainGridItem: {
-        backgroundColor: 'blue'
-    },
-    secondRowFirstItem: {
-        backgroundColor: 'green'
-    },
-    secondRowSecondItem: {
-        backgroundColor: 'orange'
-    },
-    thirdRow: {
-        backgroundColor: 'pink'
-    }
-}));
-
 const GridLayout = () => {
-
-    const classes = useStyles();
 
     return (
         <Grid container spacing={3}> 

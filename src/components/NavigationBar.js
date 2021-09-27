@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
+
 import { makeStyles } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-
+import Box from "@material-ui/core/Box";
+import Link from "@material-ui/core/Link";
+import AppBar from "@material-ui/core/AppBar";
 
 const useStyles = makeStyles((theme) => ({
     menuOption: {
@@ -37,16 +39,33 @@ const useStyles = makeStyles((theme) => ({
 
 const NavigationBar = () => {
 
+    const [windowSize, setWindowSize] = useState({
+        toggleMenu: false,
+        toggleMenuOpen: false
+    })
+    
+    const { toggleMenu, toggleMenuOpen } = windowSize;
+
+    useEffect(() => {
+        const setResponsiveness =() => {
+            return window.innerWidth < 960
+                ? setWindowSize((prevState) => ({ ...prevState, toggleMenu: true }))
+                : setWindowSize((prevState) => ({ ...prevState, toggleMenu: false }))
+        };
+
+        setResponsiveness();
+        window.addEventListener("resize", () => setResponsiveness());
+    }, [])
+
     const classes = useStyles();
 
-    return (  
-        <Container>
+    const displayLargeMenu = () => {
+        return (
             <Toolbar className={classes.toolbar}>
                 <Typography 
                     className={classes.siteTitle}
                     component='h1'
                     variant='h4'
-
                 >
                     INGSOC
                 </Typography>
@@ -62,6 +81,14 @@ const NavigationBar = () => {
                     ))}
                 </Box>
             </Toolbar>
+        )
+    }
+
+    return (  
+        <Container>
+            <AppBar>
+                {toggleMenu ? displayToggleMenu() : displayLargeMenu()}
+            </AppBar>    
         </Container>
 
     );
