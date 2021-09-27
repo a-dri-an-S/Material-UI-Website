@@ -1,4 +1,9 @@
-import { Box, Container, Link, makeStyles, Toolbar, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 
 
 const useStyles = makeStyles((theme) => ({
