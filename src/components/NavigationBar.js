@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 
-import { makeStyles } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 import AppBar from "@material-ui/core/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import Drawer from "@material-ui/core/Drawer";
+import MenuItem from "@material-ui/core/MenuItem";
+
+import MenuIcon from "@material-ui/icons/Menu";
+
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     menuOption: {
@@ -43,7 +49,7 @@ const NavigationBar = () => {
         toggleMenu: false,
         toggleMenuOpen: false
     })
-    
+
     const { toggleMenu, toggleMenuOpen } = windowSize;
 
     useEffect(() => {
@@ -58,6 +64,53 @@ const NavigationBar = () => {
     }, [])
 
     const classes = useStyles();
+
+    const displayToggleMenu = () => {
+
+        const handleToggleMenuOpen = () => setWindowSize((prevState) => ({
+            ...prevState, toggleMenuOpen: true 
+        }));
+        const handleToggleMenuClose = () => setWindowSize((prevState) => ({
+            ...prevState, toggleMenuOpen: false 
+        }));
+
+        return (
+            <Toolbar>
+                <IconButton 
+                    {...{
+                        onClick: handleToggleMenuOpen
+                    }}
+                >   
+                    <MenuIcon />
+                </IconButton>
+
+                <Drawer
+                    {...{
+                        anchor: 'left',
+                        open: toggleMenuOpen,
+                        onClose: handleToggleMenuClose
+                    }}
+                >
+                    <div>
+                        { getToggleMenuOptions() }
+                    </div>
+                </Drawer>
+
+            </Toolbar>
+        )
+    }
+
+    const getToggleMenuOptions = () => {
+        return (
+            <Box>
+            {['Home', 'Courses', 'Sign Up'].map((menuOption) => (
+                <MenuItem>
+                    {menuOption}
+                </MenuItem>
+            ))}
+            </Box>
+        )
+    }
 
     const displayLargeMenu = () => {
         return (
