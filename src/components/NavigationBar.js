@@ -1,5 +1,4 @@
 import { Box, Container, Link, makeStyles, Toolbar, Typography } from "@material-ui/core";
-import { findByLabelText } from "@testing-library/dom";
 
 
 const useStyles = makeStyles((theme) => ({

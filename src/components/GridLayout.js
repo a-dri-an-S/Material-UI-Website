@@ -1,4 +1,6 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
+import MainGridItem from "./MainGridItem";
+
 
 
 const useStyles = makeStyles(theme =>({
@@ -23,9 +25,7 @@ const GridLayout = () => {
     return (
         <Grid container spacing={3}> 
             <Grid item lg={12} sm={12} xs={12}>
-                <Typography className={classes.mainGridItem}>
-                    Main Grid Item
-                </Typography>
+                <MainGridItem />
             </Grid>
             <Grid item sm={6} xs={12}>
                 <Typography className={classes.secondRowFirstItem}>
