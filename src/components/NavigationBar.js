@@ -15,10 +15,16 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-    menuOption: {
-        padding: theme.spacing(1),
+    siteTitle: {
+        fontWeight: 'bold',
+        letterSpacing: 1.5
+    },
+    toolbar: {
+        display: 'flex',
+        flexDirection: 'column',
         [theme.breakpoints.up('md')]: {
-            paddingLeft: theme.spacing(10)
+            flexDirection: 'row',
+            justifyContent: 'space-between'
         }
     },
     menuBox: {
@@ -28,23 +34,22 @@ const useStyles = makeStyles((theme) => ({
             flexDirection: 'row'
         }
     },
-    toolbar: {
-        display: 'flex',
-        flexDirection: 'column',
+    menuOption: {
+        padding: theme.spacing(1),
         [theme.breakpoints.up('md')]: {
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-            justifyContent: 'space-between'
-        }
+            paddingLeft: theme.spacing(10)
+        },
+        color: "white"
     },
-    siteTitle: {
-        fontWeight: 'bold',
-        letterSpacing: 1.5
+    menuIcon: {
+        color: "white"
     }
 }));
 
 const NavigationBar = () => {
 
+    const classes = useStyles();
+    
     const [windowSize, setWindowSize] = useState({
         toggleMenu: false,
         toggleMenuOpen: false
@@ -53,7 +58,7 @@ const NavigationBar = () => {
     const { toggleMenu, toggleMenuOpen } = windowSize;
 
     useEffect(() => {
-        const setResponsiveness =() => {
+        const setResponsiveness = () => {
             return window.innerWidth < 960
                 ? setWindowSize((prevState) => ({ ...prevState, toggleMenu: true }))
                 : setWindowSize((prevState) => ({ ...prevState, toggleMenu: false }))
@@ -62,8 +67,6 @@ const NavigationBar = () => {
         setResponsiveness();
         window.addEventListener("resize", () => setResponsiveness());
     }, [])
-
-    const classes = useStyles();
 
     const displayToggleMenu = () => {
 
@@ -81,7 +84,7 @@ const NavigationBar = () => {
                         onClick: handleToggleMenuOpen
                     }}
                 >   
-                    <MenuIcon />
+                    <MenuIcon className={classes.menuIcon}/>
                 </IconButton>
 
                 <Drawer
